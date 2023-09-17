@@ -1,0 +1,42 @@
+class
+1. 가전제품 클래스(슈퍼 클래스) 생성
+2. 슈퍼 클래스에 이름, 수량, 가격 인스턴스 생성 및 초기화
+3. 슈퍼 클래스에 총 금액을 구하는 메서드 생성
+4. 슈퍼 클래스에 `000 의 구매수량은 00개 이므로 0000원입니다.` 구매정보 출력하는 메서드 생성
+5. 가전제품 클래스(슈퍼 클래스)를 상속하는 지불방법 클래스(서브클래스) 생성
+6. 지불방법 클래스에 상위 클래스 메서드를 참조하는 총금액 인스턴스 생성 및 초기화
+6. 메서드 오버라이딩을 통해 슈퍼 클래스의 구매정보 출력 메서드를 포함하여
+총금액이 100만원 초과일 경우 `000 의 구매수량은 00개 이므로 0000원입니다. 카드 지불하겠습니다.`
+총금액이 100만원 이하일 경우 `000 의 구매수량은 00개 이므로 0000원입니다. 현금 지불하겠습니다.`
+지불 방법과 함께 출력하는 메서드 생성
+7. 지불 방법 포함된 메서드 호출해서 결과값 얻기
+
+class Appliances {
+	constructor(name,EA,price)
+	{
+		this.name = name;
+		this.EA = EA;
+		this.price = price;
+	}
+
+	total()
+	{
+		return (`${this.name}의 구매수량은 ${this.EA}개 이므로 ${this.EA * this.price}원 입니다.`);
+	}
+}
+
+class Pay extends Appliances
+{
+	total()
+	{
+		if(this.EA * this.price > 1000000)
+			return (super.total() + ' 카드 지불하겠습니다.');
+		else
+			return (super.total() + ' 현금 지불하겠습니다.');
+	}
+}
+
+const pay1 = new Pay('냉장고',1,10000000);
+const pay2 = new Pay('김치냉장고',6, 50000);
+console.log(pay1.total());
+console.log(pay2.total());

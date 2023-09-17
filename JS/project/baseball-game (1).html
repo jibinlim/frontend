@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>숫자 야구 게임</title>
+  </head>
+  <body>
+    <h1>숫자 야구 게임</h1>
+
+    <form>
+      <label for="input">4자리 숫자 입력:</label>
+      <input type="text" id="input" maxlength="4" />
+      <div>
+        <button type="submit" id="inputButton">입력</button>
+        <button type="button" id="resetButton">리셋</button>
+        <button type="button" id="hintButton">힌트</button>
+      </div>
+    </form>
+
+    <div id="result"></div>
+    <div id="times"></div>
+
+    <script>
+      const NUM_DIGITS = 4; // 게임에 사용될 숫자의 자릿수
+
+      let input = document.querySelector("#input"); // input 요소를 가져옴
+      let inputButton = document.querySelector("#inputButton"); // 입력 버튼 요소를 가져옴
+      let resetButton = document.querySelector("#resetButton"); // 리셋 버튼 요소를 가져옴
+      let hintButton = document.querySelector("#hintButton"); // 힌트 버튼 요소를 가져옴
+      let result = document.querySelector("#result"); // 결과 표시 영역 요소를 가져옴
+      let times = document.querySelector("#times"); // 남은 횟수 표시 영역 요소를 가져옴
+
+      let remainingTries = 10; // 남은 횟수
+
+      times.textContent = `남은 횟수: ${remainingTries}`; // 초기화 후, 남은 횟수를 표시
+
+      let answer = generateAnswer(); // 게임의 정답 생성
+      console.log(answer);
+
+      inputButton.addEventListener("click", function (e) {
+        // 입력 버튼 클릭 시
+        e.preventDefault();
+
+        let inputValue = input.value;
+        if (isValidInput(inputValue)) {
+          // 유효한 입력인 경우
+
+          let [strike, ball] = calculateResult(inputValue, answer);
+          if (strike === NUM_DIGITS) {
+            // 홈런인 경우
+
+            result.textContent = "홈런!!";
+            answer = generateAnswer(); // 새로운 정답 생성
+            console.log(answer);
+          } else {
+            // 홈런이 아닌 경우
+
+            result.textContent = `${strike} 스트라이크, ${ball} 볼`;
+          }
+
+          remainingTries--; // 남은 횟수 감소
+          if (remainingTries === 0) {
+            // 횟수 초과인 경우
+
+            result.textContent = `횟수 초과!! 정답은 ${answer} 입니다.`; // 결과 표시
+            times.textContent = ""; // 남은 횟수 표시 초기화
+            answer = generateAnswer(); // 새로운 정답 생성
+            console.log(answer);
+            remainingTries = 10; // 횟수 초기화
+          } else if (isValidInput(inputValue)) {
+            // 유효한 입력인 경우
+            times.textContent = `남은 횟수: ${remainingTries}`; // 남은 횟수 표시
+          } else {
+            // 유효하지 않은 입력인 경우
+            result.textContent = "잘못된 입력입니다.";
+          }
+        }
+
+        input.value = ""; // 입력 필드 초기화
+        input.focus(); // 입력 필드에 초점을 맞춤
+      });
+
+      resetButton.addEventListener("click", function (e) {
+        // 리셋 버튼 클릭 시
+        e.preventDefault();
+
+        answer = generateAnswer(); // 새로운 정답 생성
+        console.log(answer);
+        remainingTries = 10; // 횟수 초기화
+        times.textContent = `남은 횟수: ${remainingTries}`; // 횟수 표시 초기화
+        result.textContent = "리셋 되었습니다."; // 결과 표시 초기화
+      });
+
+      hintButton.addEventListener("click", function (e) {
+        // 힌트 버튼 클릭 시
+        e.preventDefault();
+
+        if (remainingTries > 0) {
+          // 남은 횟수가 있는 경우
+
+          let hintNumbers = generateHintNumbers(answer); // 힌트 숫자 생성
+          result.textContent = `힌트: ${hintNumbers.join(", ")}`; // 힌트 표시
+        }
+      });
+
+      function generateAnswer() {
+        // 게임의 정답 생성
+
+        let nums = [];
+        while (nums.length < NUM_DIGITS) {
+          let num = Math.floor(Math.random() * 10);
+          if (!nums.includes(num)) {
+            nums.push(num);
+          }
+        }
+        return nums.join("");
+      }
+
+      function isValidInput(inputValue) {
+        // 입력값 유효성 검사
+
+        if (!/^\d{4}$/.test(inputValue)) {
+          return false;
+        }
+
+        let digits = new Set(inputValue);
+        return digits.size === NUM_DIGITS;
+      }
+
+      function calculateResult(inputValue, answer) {
+        // 입력값과 정답 비교하여 결과 반환
+
+        let strike = 0;
+        let ball = 0;
+        for (let i = 0; i < NUM_DIGITS; i++) {
+          let inputNum = parseInt(inputValue.charAt(i));
+          if (inputNum === parseInt(answer.charAt(i))) {
+            // 자릿수와 숫자가 일치하는 경우
+
+            strike++;
+          } else if (answer.includes(inputNum)) {
+            // 자릿수는 다르지만, 숫자가 일치하는 경우
+
+            ball++;
+          }
+        }
+        return [strike, ball];
+      }
+
+      function generateHintNumbers(answer) {
+        // 힌트 숫자 생성
+
+        let hintNumbers = [];
+        while (hintNumbers.length < 5) {
+          let num = Math.floor(Math.random() * 10);
+          if (!answer.includes(num) && !hintNumbers.includes(num)) {
+            hintNumbers.push(num);
+          }
+        }
+        return hintNumbers.sort((a, b) => b - a); // 내림차순 정렬
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,15 @@
+<html>
+    <body>
+        <ul id = "fruits">
+            <li>Apple</li>
+        </ul>
+    </body>
+    <script>
+        const $fruits = document.getElementById('fruits');
+        const $li = document.createElement('li');
+        const textNode = document.createTextNode('Banana');
+
+        $li.appendChild(textNode);
+        $fruits.appendChild($li);
+    </script>
+</html>

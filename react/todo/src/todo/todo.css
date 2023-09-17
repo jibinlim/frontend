@@ -1,0 +1,11 @@
+*{
+    box-sizing: border-box;
+  }
+  
+  html, body, #root{
+    height: 100%;
+  }
+  
+  html{
+    background-color: rgba(39, 175, 229, 0.998);
+  }

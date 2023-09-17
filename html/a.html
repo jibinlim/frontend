@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      table,
+      th,
+      td {
+        border: 1px solid black;
+        border-collapse: collapse;
+      }
+
+      th,
+      td {
+        padding: 15px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <<h2>제목 태그</h2>
+
+    <h1>heading 1</h1>
+    <h2>heading 2</h2>
+    <h3>heading 3</h3>
+    <h4>heading 4</h4>
+    <h5>heading 5</h5>
+    <h6>heading 6</h6>
+
+    <h2>글자 형태 태그</h2>
+    <p>This text is bold.</p>
+    <b>This text is bold.</b>
+    <strong>This text is strong.</strong><br />
+    <i>This text is italic.</i>
+    <em>This text is emphasized.</em>
+
+    <h2>본문 태그</h2>
+    <p>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+      tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+      veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+      commodo consequat.
+    </p>
+    <br />
+    <p>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+      tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+      veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+      commodo consequat.
+    </p>
+    <p>This is a para graph</p>
+    <p>This is&nbsp; a para&nbsp; &nbsp; graph</p>
+    <hr />
+
+    <h2>순서 없는 목록</h2>
+    <ul>
+      <li>Coffee</li>
+      <li>Tea</li>
+      <li>Milk</li>
+    </ul>
+    <h2>순서 있는 목록</h2>
+    <ol start="3">
+      <li>Coffee</li>
+      <li>Tea</li>
+      <li>Milk</li>
+    </ol>
+    <h2>중첩 목록</h2>
+    <ul>
+      <li>Coffee</li>
+      <li>
+        Tea
+        <ol>
+          <li><b>Black tea</b></li>
+          <li>Green tea</li>
+        </ol>
+      </li>
+      <li>Milk</li>
+    </ul>
+
+    <h2>테이블</h2>
+    <table border="1">
+      <tr>
+        <th>First name</th>
+        <th>Last name</th>
+        <th>Score</th>
+      </tr>
+      <tr>
+        <td>Jill</td>
+        <td>Smith</td>
+        <td>50</td>
+      </tr>
+      <tr>
+        <td>Eve</td>
+        <td>Jackson</td>
+        <td>94</td>
+      </tr>
+      <tr>
+        <td>John</td>
+        <td>Doe</td>
+        <td>80</td>
+      </tr>
+    </table>
+
+    <h2>2개의 column을 span</h2>
+    <table>
+      <tr>
+        <th>Name</th>
+        <th colspan="2">Telephone</th>
+      </tr>
+      <tr>
+        <td>Bill Gates</td>
+        <td>555 77 854</td>
+        <td>555 77 855</td>
+      </tr>
+    </table>
+
+    <h2>2개의 row를 span</h2>
+    <table>
+      <tr>
+        <th>Name:</th>
+        <td>Bill Gates</td>
+      </tr>
+      <tr>
+        <th rowspan="2">Telephone:</th>
+        <td>555 77 854</td>
+      </tr>
+      <tr>
+        <td>555 77 855</td>
+      </tr>
+    </table>
+
+    <h2>form 태그</h2>
+    <form action="http://jsonplaceholder.typicode.com/users" method="get">
+      ID: <input type="text" name="id" value="1" /><br />
+      username: <input type="text" name="username" value="철수" /><br />
+      <input type="submit" value="Submit" />
+    </form>
+
+    <h2>input 태그</h2>
+    <h3>button</h3>
+    <input type="button" value="Click me" onclick="alert('Hello world!')" />
+    <hr />
+
+    <h3>checkbox</h3>
+    <input type="checkbox" name="fruit1" value="apple" checked /> 사과<br />
+    <input type="checkbox" name="fruit2" value="grape" /> 포도<br />
+    <input type="checkbox" name="fruit3" value="peach" /> 복숭아<br />
+    <hr />
+
+    <h3>color</h3>
+    <input type="color" name="mycolor" />
+    <hr />
+
+    <h3>date</h3>
+    <input type="date" name="birthday" />
+    <hr />
+
+    <h3>datetime</h3>
+    <input type="datetime" name="birthdaytime" />
+    <hr />
+
+    <h3>datetime-local</h3>
+    <input type="datetime-local" name="birthdaytime" />
+    <hr />
+
+    <h3>email</h3>
+    <input type="email" name="useremail" />
+    <hr />
+
+    <h3>file</h3>
+    <input type="file" name="myfile" />
+    <hr />
+
+    <h3>hidden</h3>
+    <input type="hidden" name="country" value="Norway" />
+    <hr />
+
+    <h3>image</h3>
+    <input
+      type="image"
+      src="img/img_submit.gif"
+      alt="Submit"
+      width="48"
+      height="48"
+    />
+    <hr />
+
+    <h3>month</h3>
+    <input type="month" name="birthdaymonth" />
+    <hr />
+
+    <h3>number</h3>
+    <input type="number" name="quantity" min="2" max="10" step="2" value="2" />
+    <hr />
+
+    <h3>password</h3>
+    <input type="password" name="pwd" />
+    <hr />
+
+    <h3>radio</h3>
+    <input type="radio" name="gender" value="male" checked /> 남자<br />
+    <input type="radio" name="gender" value="female" /> 여자<br />
+    <hr />
+
+    <h3>range</h3>
+    <input type="range" name="points" min="0" max="10" step="1" value="5" />
+    <hr />
+
+    <h3>reset</h3>
+    <input type="reset" />
+    <hr />
+
+    <h3>search</h3>
+    <input type="search" name="googlesearch" />
+    <hr />
+
+    <h3>submit</h3>
+    <input type="submit" value="Submit" />
+    <hr />
+
+    <h3>tel</h3>
+    <input type="tel" name="mytel" />
+    <hr />
+
+    <h3>text</h3>
+    <input type="text" name="myname" />
+    <hr />
+
+    <h3>time</h3>
+    <input type="time" name="mytime" />
+    <hr />
+
+    <h3>url</h3>
+    <input type="url" name="myurl" />
+    <hr />
+
+    <h3>week</h3>
+    <input type="week" name="week_year" />
+
+    <h2>select</h2>
+    <select name="cars1">
+      <option value="volvo">Volvo</option>
+      <option value="saab" disabled>Saab</option>
+      <option value="fiat" selected>Fiat</option>
+      <option value="audi">Audi</option>
+    </select>
+
+    <select name="cars2" size="4" multiple>
+      <option value="volvo">Volvo</option>
+      <option value="saab">Saab</option>
+      <option value="fiat">Fiat</option>
+      <option value="audi" selected>Audi</option>
+    </select>
+
+    <select name="cars3">
+      <optgroup label="Swedish Cars">
+        <option value="volvo">Volvo</option>
+        <option value="saab">Saab</option>
+      </optgroup>
+      <optgroup label="German Cars" disabled>
+        <option value="mercedes">Mercedes</option>
+        <option value="audi">Audi</option>
+      </optgroup>
+    </select>
+
+    <h2>textarea</h2>
+    <textarea name="message" rows="10" cols="30">Write something here</textarea> 
+
+    <h2>button</h2>
+    <button type="button" onclick="alert('Hello World!')">Click Me!</button>
+
+    <input type="button" value="Click Me!" onclick="alert('Hello world!')" />
+  </body>
+</html>
